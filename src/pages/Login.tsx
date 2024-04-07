@@ -14,7 +14,22 @@ export default function Login() {
     setPassword(e.currentTarget.value);
   };
 
-  const onSubmitHandler = () => {};
+  const onSubmitHandler = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    try {
+      const response = await fetch('/api/v1/users/login', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ email, password }),
+      });
+      const data = await response.json();
+      console.log(data);
+    } catch (error) {
+      console.error('Error:', error);
+    }
+  };
 
   return (
     <div className="flex flex-row justify-center ">
@@ -28,7 +43,7 @@ export default function Login() {
         className="border border-gray-500 mt-20 font-semibold text-xl rounded-lg"
         style={{ width: '554px', height: '700px' }}
       >
-        <form>
+        <form onSubmit={onSubmitHandler}>
           <div className="mt-14 ml-20">
             <h2 className=" mb-3">이메일 주소</h2>
             <input
@@ -47,13 +62,14 @@ export default function Login() {
               onChange={onPasswordHandler}
             />
           </div>
-          <button
-            type="submit"
-            className="border rounded-xl w-52 h-16  outline-none border-blue-500 mt-12 ml-44 text-blue-500"
-            onClick={onSubmitHandler}
-          >
-            로그인 하기
-          </button>
+          <Link to="/">
+            <button
+              type="submit"
+              className="border rounded-xl w-52 h-16  outline-none border-blue-500 mt-12 ml-44 text-blue-500"
+            >
+              로그인 하기
+            </button>
+          </Link>
         </form>
         <hr className="mt-12 w-96 border-t ml-20 border-gray-700"></hr>
         <div className="flex flex-col">

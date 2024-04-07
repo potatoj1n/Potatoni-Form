@@ -1,11 +1,11 @@
 import { configureStore } from '@reduxjs/toolkit';
 import sessionStorage from 'redux-persist/lib/storage/session';
 import { useDispatch, useSelector } from 'react-redux';
-import type { TypedUseSelectorHook } from 'react-redux'; // updated import statement
+import type { TypedUseSelectorHook } from 'react-redux';
 import { persistReducer } from 'redux-persist';
 import { combineReducers } from '@reduxjs/toolkit';
 import loginSlice from '../reducers/UserReducer';
-import persistStore from 'redux-persist/es/persistStore';
+import { persistStore } from 'redux-persist';
 
 export type RootState = ReturnType<typeof store.getState>;
 export type AppDispatch = typeof store.dispatch;
@@ -27,7 +27,10 @@ const persistedReducer = persistReducer(persistConfig, rootReducer);
 
 const store = configureStore({
   reducer: persistedReducer,
+  middleware: getDefaultMiddleware =>
+    getDefaultMiddleware({
+      serializableCheck: false,
+    }),
 });
-
 export default store;
 export const persistor = persistStore(store);
