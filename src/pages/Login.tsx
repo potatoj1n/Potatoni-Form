@@ -1,10 +1,13 @@
 import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
+
 import { ReactComponent as MainLogo2 } from '../assets/mainLogo_2.svg';
 
 export default function Login() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const [errorMessage, setErrorMessage] = useState('');
+  const navigate = useNavigate();
 
   const onEmailHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
     setEmail(e.currentTarget.value);
@@ -17,7 +20,7 @@ export default function Login() {
   const onSubmitHandler = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     try {
-      const response = await fetch('/api/v1/users/login', {
+      const response = await fetch('/localhost8080/api/v1/users/login', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -25,9 +28,17 @@ export default function Login() {
         body: JSON.stringify({ email, password }),
       });
       const data = await response.json();
-      console.log(data);
+
+      if (response.ok) {
+        const accessToken = data.accessToken;
+        sessionStorage.setItem('accessToken', accessToken);
+        navigate('/');
+      } else {
+        setErrorMessage('로그인 정보가 없습니다. 다시 시도해주세요.');
+      }
     } catch (error) {
       console.error('Error:', error);
+      setErrorMessage('로그인 정보가 없습니다. 다시 시도해주세요.');
     }
   };
 
@@ -49,7 +60,7 @@ export default function Login() {
             <input
               type="email"
               value={email}
-              className="w-96 h-16 p-3 border rounded-xl outline-none bg-blue-200 focus:border-blue-500"
+              className="w-96 h-16 p-3 border rounded-xl outline-none bg-blue-200 focus:border-blue-500 focus:bg-blue-100"
               onChange={onEmailHandler}
             />
           </div>
@@ -58,28 +69,27 @@ export default function Login() {
             <input
               type="password"
               value={password}
-              className="w-96 h-16 p-3 border rounded-xl  outline-none bg-blue-200 focus:border-blue-500"
+              className="w-96 h-16 p-3 border rounded-xl  outline-none bg-blue-200 focus:border-blue-500 focus:bg-blue-100"
               onChange={onPasswordHandler}
             />
           </div>
-          <Link to="/">
-            <button
-              type="submit"
-              className="border rounded-xl w-52 h-16  outline-none border-blue-500 mt-12 ml-44 text-blue-500"
-            >
-              로그인 하기
-            </button>
-          </Link>
+          <button
+            type="submit"
+            className="border rounded-xl w-52 h-16  outline-none border-blue-500 mt-12 ml-44 text-blue-500"
+          >
+            로그인 하기
+          </button>
+          {errorMessage && <p className="text-red-500 ml-28 mt-3">{errorMessage}</p>}
         </form>
         <hr className="mt-12 w-96 border-t ml-20 border-gray-700"></hr>
         <div className="flex flex-col">
           <Link to="/register">
-            <button className="w-96 h-16 ml-20 mt-10 border rounded-xl  outline-none border-blue-500 ">
+            <button className="w-96 h-16 ml-20 mt-8 border rounded-xl  outline-none border-blue-500 ">
               구글로 로그인, 회원가입 하기
             </button>
           </Link>
           <Link to="/register">
-            <button className="w-52 h-16 mt-9 ml-44 border rounded-xl  outline-none border-blue-500 text-blue-500">
+            <button className="w-52 h-16 mt-8 ml-44 border rounded-xl  outline-none border-blue-500 text-blue-500">
               회원가입 하기
             </button>
           </Link>

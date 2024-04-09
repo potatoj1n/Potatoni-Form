@@ -12,7 +12,7 @@ const initialState: UserState = {
   isLoggedIn: false,
 };
 
-const loginReducer = createSlice({
+const authReducer = createSlice({
   name: 'login',
   initialState,
   reducers: {
@@ -29,5 +29,5 @@ const loginReducer = createSlice({
   },
 });
 
-export const { setLogin, setLogout } = loginReducer.actions;
-export default loginReducer.reducer;
+export const { setLogin, setLogout } = authReducer.actions;
+export default authReducer.reducer;

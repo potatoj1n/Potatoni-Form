@@ -32,7 +32,7 @@ export default function Register() {
       return alert('비밀번호와 비밀번호 확인은 같아야 합니다.');
     }
     try {
-      const response = await fetch('/api/v1/users/register', {
+      const response = await fetch('https://ce5563c1-d776-4ec9-ae46-c931b4bb5314.mock.pstmn.io/register', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -59,14 +59,14 @@ export default function Register() {
       <Link to="/" className="w-36 h-32 mt-20">
         <MainLogo2 />
       </Link>
-      <main className=" mt-10 font-semibold text-xl" style={{ width: '554px', height: '700px' }}>
+      <main className=" mt-8 font-semibold text-xl" style={{ width: '554px', height: '700px' }}>
         <form onSubmit={onSubmitHandler}>
           <div className="ml-20">
             <h2 className=" mb-3">이메일 주소</h2>
             <input
               type="email"
               value={email}
-              className="w-96 h-16 p-3 border rounded-xl outline-none bg-blue-200  focus:border-blue-500"
+              className="w-96 h-14 p-3 border rounded-xl outline-none bg-blue-200  focus:border-blue-500 focus:bg-blue-100"
               onChange={onEmailHandler}
             ></input>
           </div>
@@ -75,7 +75,7 @@ export default function Register() {
             <input
               type="password"
               value={password}
-              className="w-96 h-16 p-3 border rounded-xl  outline-none bg-blue-200 focus:border-blue-500"
+              className="w-96 h-14 p-3 border rounded-xl  outline-none bg-blue-200 focus:border-blue-500 focus:bg-blue-100"
               onChange={onPasswordHandler}
             ></input>
           </div>
@@ -84,7 +84,7 @@ export default function Register() {
             <input
               type="password"
               value={confirmPassword}
-              className="w-96 h-16 p-3 border rounded-xl  outline-none bg-blue-200 focus:border-blue-500"
+              className="w-96 h-14 p-3 border rounded-xl  outline-none bg-blue-200 focus:border-blue-500 focus:bg-blue-100"
               onChange={onConfirmPasswordHandler}
             ></input>
           </div>
@@ -93,7 +93,7 @@ export default function Register() {
             <input
               type="text"
               value={name}
-              className="w-96 h-16 p-3 border rounded-xl  outline-none bg-blue-200 focus:border-blue-500"
+              className="w-96 h-14 p-3 border rounded-xl  outline-none bg-blue-200 focus:border-blue-500 focus:bg-blue-100"
               onChange={onNameHandler}
             ></input>
           </div>
@@ -101,11 +101,17 @@ export default function Register() {
           {errorMessage && <p className="text-red-500 ml-20">{errorMessage}</p>}
           <button
             type="submit"
-            className="px-6 h-16 mt-9 ml-52 border rounded-xl  outline-none border-blue-500 text-blue-500"
+            className="px-6 h-12 mt-8 ml-52 border rounded-xl  outline-none border-blue-500 text-blue-500"
           >
             가입 하기
           </button>
         </form>
+        <p className="ml-20 p-6 mt-2 font-medium text-gray-600">
+          이미 회원이신가요?&nbsp;
+          <Link to="/login" className="underline ml-8 text-gray-600">
+            로그인 하러가기
+          </Link>
+        </p>
       </main>
     </div>
   );
