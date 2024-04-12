@@ -1,7 +1,7 @@
 import React from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { Link } from 'react-router-dom';
-import { logout } from '../actions/authActions';
+import { logout } from '../hooks/authActions';
 import { RootState } from '../store/store';
 import { ReactComponent as MainLogo } from '../assets/mainLogo.svg';
 
@@ -15,7 +15,7 @@ export default function Header() {
   };
 
   return (
-    <header className="h-16 mt-1 flex justify-between border-b border-gray-200">
+    <header className="h-16 mt-1 mx-28 flex justify-between border-b border-gray-200">
       <Link to="/">
         <MainLogo />
       </Link>

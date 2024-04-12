@@ -1,12 +1,12 @@
 import { configureStore } from '@reduxjs/toolkit';
-import sessionStorage from 'redux-persist/es/storage/session';
+import localStorage from 'redux-persist/es/storage/session';
 import { useDispatch, useSelector } from 'react-redux';
 import type { TypedUseSelectorHook } from 'react-redux';
 import { persistReducer } from 'redux-persist';
 import { combineReducers } from '@reduxjs/toolkit';
 import { persistStore } from 'redux-persist';
 import authReducer from '../reducers/AuthReducer';
-
+import formReducer from '../reducers/formReducer';
 export type RootState = ReturnType<typeof store.getState>;
 export type AppDispatch = typeof store.dispatch;
 
@@ -15,12 +15,13 @@ export const useAppSelector: TypedUseSelectorHook<RootState> = useSelector;
 
 const persistConfig = {
   key: 'root',
-  storage: sessionStorage,
+  storage: localStorage,
   whitelist: ['login'],
 };
 
 const rootReducer = combineReducers({
   auth: authReducer,
+  form: formReducer,
 });
 
 const persistedReducer = persistReducer(persistConfig, rootReducer);
