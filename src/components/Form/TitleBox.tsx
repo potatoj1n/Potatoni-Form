@@ -14,23 +14,23 @@ const TitleBox = ({ info, handleChange }: Props) => {
   const location = useLocation();
   const { pathname } = location;
   const isPreview = pathname === '/preview';
-  const isResult = pathname === '/result';
+  const isResult = pathname === '/response';
 
   return (
     <div>
       {!isPreview && !isResult ? (
-        <div className="inputs">
+        <div className="border rounded-xl w-auto flex border-t-blue-500 border-t-8 flex-col mb-5 h-52 bg-white p-8">
           <input
             type="text"
-            className="inputs__title"
-            placeholder="제목 없는 설문지"
+            className="font-semibold text-3xl mb-12 p-2 focus:outline-none focus:border-b-2 focus:border-blue-500 focus:bg-gray-100"
+            placeholder="제목 없는 설문"
             name="title"
             value={info.title}
             onChange={({ target: { value } }) => handleChange && handleChange('title', value)}
           />
           <input
             type="text"
-            className="inputs__detail"
+            className="p-2 focus:outline-none focus:border-b-2 focus:border-blue-500 "
             placeholder="설문지 설명"
             name="detail"
             value={info.detail}
@@ -38,11 +38,11 @@ const TitleBox = ({ info, handleChange }: Props) => {
           />
         </div>
       ) : (
-        <div className="preview">
-          <div className="preview__title">{info.title}</div>
-          <div className="preview__detail">{info.detail}</div>
+        <div>
+          <div className="text-2xl mb-3">{info.title}</div>
+          <div className="text-lg ml-5">{info.detail}</div>
           <hr />
-          <div className="preview__guide">* 필수항목</div>
+          <div className="text-sm mt-1">* 필수항목</div>
         </div>
       )}
     </div>

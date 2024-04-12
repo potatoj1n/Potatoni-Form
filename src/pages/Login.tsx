@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
-
 import { ReactComponent as MainLogo2 } from '../assets/mainLogo_2.svg';
 
 export default function Login() {
@@ -29,7 +28,7 @@ export default function Login() {
       });
       const data = await response.json();
 
-      if (response.ok) {
+      if (response.status === 200) {
         const accessToken = data.accessToken;
         sessionStorage.setItem('accessToken', accessToken);
         navigate('/');

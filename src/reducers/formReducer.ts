@@ -6,7 +6,7 @@ interface FormInfo {
 }
 
 const initialState: FormInfo = {
-  title: '제목 없는 설문지',
+  title: '',
   detail: '',
 };
 

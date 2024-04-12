@@ -5,10 +5,11 @@ import { DragDropContext, Droppable, Draggable, DropResult } from 'react-beautif
 import { questionActions } from '../reducers/questionReducer';
 import QuestionContainer from '../containers/questionContainer';
 import FormHeader from '../components/Form/formHeader';
+import SideMenu from '../components/Form/sideMenu';
 import TitleBox from '../components/Form/TitleBox';
 import useAppSelector from '../hooks/useAppSelector';
 
-export default function Form() {
+const Form = () => {
   const { form, questions } = useAppSelector(state => state.form);
   const dispatch = useDispatch();
 
@@ -35,6 +36,7 @@ export default function Form() {
               ...provided.draggableProps.style,
               backgroundColor: snapshot.isDragging ? 'lightblue' : 'white',
             }}
+            className="border rounded-xl min-h-62 mb-5 px-9 py-3"
           >
             <QuestionContainer key={question.id} questionId={question.id} provided={provided} />
           </div>
@@ -42,6 +44,7 @@ export default function Form() {
       </Draggable>
     ));
   };
+
   const onDragEnd = (result: DropResult) => {
     if (!result.destination) {
       return;
@@ -51,9 +54,15 @@ export default function Form() {
 
   return (
     <div className="flex flex-col h-screen">
-      <FormHeader title={info.title} detail={info.detail} />
-      <div className="flex flex-col justify-center items-center flex-grow bg-blue-200">
-        <main className="w-full max-w-screen-lg">
+      <FormHeader title={info.title} />
+      <div className="flex flex-row justify-center text-base font-semibold gap-3">
+        <Link to="/form" className="text-blue-500 border-blue-500 border-b-2">
+          질문
+        </Link>
+        <Link to="/response">응답</Link>
+      </div>
+      <div className="flex flex-col justify-start items-center flex-grow bg-blue-200">
+        <main className="w-3/5 max-w-screen-lg">
           <TitleBox info={info} handleChange={handleInfo} />
           <DragDropContext onDragEnd={onDragEnd}>
             <Droppable droppableId="droppable">
@@ -65,9 +74,12 @@ export default function Form() {
               )}
             </Droppable>
           </DragDropContext>
-          <Link to="/response">응답</Link>
         </main>
+        <span className="fixed right-48 top-44">
+          <SideMenu info={info} />
+        </span>
       </div>
     </div>
   );
-}
+};
+export default Form;

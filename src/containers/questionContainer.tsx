@@ -3,7 +3,7 @@ import Dropdown from '../components/Form/dropDown';
 import { ReactComponent as CopyIcon } from '../assets/copyIcon.svg';
 import { ReactComponent as DragIcon } from '../assets/dragIcon.svg';
 import { ReactComponent as TrashIcon } from '../assets/trashIcon.svg';
-import { Switch } from '@material-ui/core';
+import { Switch, IconButton } from '@material-ui/core';
 import * as QUESTION_TYPES from '../const/questionType';
 import NarrativeQuestion from '../components/Form/narrativeQuestion';
 import OptionalQuestion from '../components/Form/optionalQuestion';
@@ -111,28 +111,31 @@ const QuestionContainer = ({ questionId, provided }: QuestionProps) => {
   };
 
   return (
-    <div>
-      <div className="handler" {...provided.dragHandleProps}>
+    <div className="flex flex-col">
+      <div className="flex justify-center" {...provided.dragHandleProps}>
         <DragIcon />
       </div>
-      <div className="question">
+      <div className="flex flex-row">
         <input
-          className="question-input"
+          className=" p-3 w-2/3 text-xl border-gray-500 border-b focus:border-b-2 focus:border-blue-500 focus:outline-none bg-gray-100 mr-5"
           type="text"
           placeholder="질문"
           value={questionContent}
           onChange={handleQuestionChange}
         />
-
         <Dropdown questionId={questionId} menus={menus} />
       </div>
-      {getInput()}
+      <div>{getInput()}</div>
       <hr />
-      <div className="settings">
-        <CopyIcon onClick={handleCopyQuestion} />
-        <TrashIcon onClick={handleDeleteQuestion} />
+      <div className="flex flex-row justify-end items-center gap-3">
+        <IconButton>
+          <CopyIcon onClick={handleCopyQuestion} />
+        </IconButton>
+        <IconButton>
+          <TrashIcon onClick={handleDeleteQuestion} />
+        </IconButton>
         <div className="switch-label">필수</div>
-        <Switch className="colorSecondary" checked={isNecessary} onChange={handleSwitch} />
+        <Switch checked={isNecessary} onChange={handleSwitch} />
       </div>
     </div>
   );

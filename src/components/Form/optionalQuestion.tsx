@@ -1,4 +1,5 @@
-import { Radio, Checkbox } from '@material-ui/core';
+import { Radio, Checkbox, IconButton } from '@material-ui/core';
+import { ReactComponent as DeleteIcon } from '../../assets/deleteIcon.svg'; // 추가
 import * as QUESTION_TYPES from '../../const/questionType';
 import { useDispatch } from 'react-redux';
 import { questionActions } from '../../reducers/questionReducer';
@@ -17,7 +18,7 @@ const OptionalQuestion = ({ type, optionId, questionId, optionContent, isLast, i
   const dispatch = useDispatch();
   const location = useLocation();
   const isPreview = location.pathname === '/preview';
-  const isResult = location.pathname === '/result';
+  const isResult = location.pathname === '/response';
 
   const handleAddOption = () => {
     isLast && dispatch(questionActions.addOption({ id: questionId, optionId }));
@@ -25,6 +26,10 @@ const OptionalQuestion = ({ type, optionId, questionId, optionContent, isLast, i
 
   const handleContentChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     dispatch(questionActions.setOptionContent({ id: questionId, optionId, optionContent: e.target.value }));
+  };
+
+  const handleDeleteOption = () => {
+    dispatch(questionActions.deleteOption({ id: questionId, optionId }));
   };
 
   const isChecked = () => {
@@ -42,7 +47,6 @@ const OptionalQuestion = ({ type, optionId, questionId, optionContent, isLast, i
       case QUESTION_TYPES.ONE_CHOICE:
         return (
           <Radio
-            color="primary"
             disabled={isDisabled()}
             onClick={() => dispatch(questionActions.markOneAnswer({ id: questionId, optionId, isAnswer }))}
             value={String(optionId)}
@@ -52,7 +56,6 @@ const OptionalQuestion = ({ type, optionId, questionId, optionContent, isLast, i
       case QUESTION_TYPES.MULTIPLE_CHOICE:
         return (
           <Checkbox
-            color="primary"
             disabled={isDisabled()}
             onChange={() => dispatch(questionActions.markMultipleAnswer({ id: questionId, optionId, isAnswer }))}
             value={String(optionId)}
@@ -67,12 +70,32 @@ const OptionalQuestion = ({ type, optionId, questionId, optionContent, isLast, i
   };
 
   return (
-    <div>
+    <div className="flex flex-row justify-start gap-4">
       {showOptionButton()}
       {isPreview || isResult ? (
-        <div className="preview-option">{optionContent}</div>
+        <div>
+          {!isDisabled() && (
+            <IconButton aria-label="delete" onClick={handleDeleteOption}>
+              <DeleteIcon />
+            </IconButton>
+          )}
+          {optionContent}
+        </div>
       ) : (
-        <input type="text" value={optionContent} onChange={handleContentChange} onClick={handleAddOption} />
+        <div className="w-full">
+          <input
+            type="text"
+            value={optionContent}
+            onChange={handleContentChange}
+            onClick={handleAddOption}
+            className="focus:outline-none  hover:border-b w-96"
+          />
+          {!isDisabled() && (
+            <IconButton aria-label="delete" onClick={handleDeleteOption}>
+              <DeleteIcon />
+            </IconButton>
+          )}
+        </div>
       )}
     </div>
   );

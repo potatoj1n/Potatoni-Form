@@ -47,7 +47,7 @@ const PreviewContainer = ({ questionId }: SolveProps) => {
   };
 
   return (
-    <div>
+    <div className="text-base border rounded-xl flex flex-col flex-grow mb-5 bg-white p-8">
       <span className="title">{questionContent}</span>
       {isNecessary && <span className="title_necessary">*</span>}
       {getInput()}

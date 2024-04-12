@@ -1,5 +1,5 @@
 import { configureStore } from '@reduxjs/toolkit';
-import localStorage from 'redux-persist/es/storage/session';
+import sessionStorage from 'redux-persist/es/storage/session';
 import { useDispatch, useSelector } from 'react-redux';
 import type { TypedUseSelectorHook } from 'react-redux';
 import { persistReducer } from 'redux-persist';
@@ -15,7 +15,7 @@ export const useAppSelector: TypedUseSelectorHook<RootState> = useSelector;
 
 const persistConfig = {
   key: 'root',
-  storage: localStorage,
+  storage: sessionStorage,
   whitelist: ['login'],
 };
 

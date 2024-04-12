@@ -1,4 +1,3 @@
-import React from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { logout } from '../hooks/authActions';
@@ -12,6 +11,7 @@ export default function Header() {
 
   const handleLogout = () => {
     dispatch(logout());
+    sessionStorage.clear();
   };
 
   return (
@@ -29,7 +29,7 @@ export default function Header() {
           </>
         ) : (
           <>
-            <button className="border-none rounded-md bg-gray-100 mr-2 w-20 h-8">
+            <button className="border-none rounded-md bg-gray-100 mr-2 text-blue-500 w-20 h-8">
               <Link to="/login">Login</Link>
             </button>
             <button className="border-none rounded-md bg-blue-500 text-white w-24 h-8">

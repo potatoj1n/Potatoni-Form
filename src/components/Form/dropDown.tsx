@@ -1,6 +1,4 @@
-import MenuItem from '@material-ui/core/MenuItem';
-import Select from '@material-ui/core/Select';
-import { ThemeProvider, unstable_createMuiStrictModeTheme } from '@material-ui/core';
+import { MenuItem, Select } from '@material-ui/core';
 import { questionActions } from '../../reducers/questionReducer';
 import { useDispatch } from 'react-redux';
 import useAppSelector from '../../hooks/useAppSelector';
@@ -19,11 +17,9 @@ interface Props {
 
 const Dropdown = ({ questionId, menus, isAnswer }: Props) => {
   const dispatch = useDispatch();
-  const theme = unstable_createMuiStrictModeTheme();
-
   const location = useLocation();
   const isPreview = location.pathname === '/preview';
-  const isResult = location.pathname === '/result';
+  const isResult = location.pathname === '/response';
 
   const { questions } = useAppSelector(state => state.form);
   const question = questions.find(item => item.id === questionId);
@@ -46,20 +42,19 @@ const Dropdown = ({ questionId, menus, isAnswer }: Props) => {
 
   return (
     <div>
-      <ThemeProvider theme={theme}>
-        <Select
-          disableUnderline
-          disabled={isResult ? true : false}
-          value={showValue()}
-          onChange={isPreview ? handleAnswerChange : handleTypeChange}
-        >
-          {menus.map(menu => (
-            <MenuItem key={menu.id} value={menu.id}>
-              <div>{menu.option}</div>
-            </MenuItem>
-          ))}
-        </Select>
-      </ThemeProvider>
+      <Select
+        disableUnderline
+        disabled={isResult ? true : false}
+        value={showValue()}
+        onChange={isPreview ? handleAnswerChange : handleTypeChange}
+        className="border rounded p-1 px-2"
+      >
+        {menus.map(menu => (
+          <MenuItem key={menu.id} value={menu.id}>
+            <div>{menu.option}</div>
+          </MenuItem>
+        ))}
+      </Select>
     </div>
   );
 };

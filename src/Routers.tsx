@@ -4,6 +4,7 @@ import Login from './pages/Login';
 import Register from './pages/Register';
 import Form from './pages/Form';
 import Response from './pages/Response';
+import Preview from './pages/FormPreview';
 
 const Routers = createBrowserRouter([
   { path: '/', element: <Main /> },
@@ -11,6 +12,7 @@ const Routers = createBrowserRouter([
   { path: '/register', element: <Register /> },
   { path: '/form', element: <Form /> },
   { path: '/response', element: <Response /> },
+  { path: '/preview', element: <Preview /> },
 ]);
 
 export default Routers;

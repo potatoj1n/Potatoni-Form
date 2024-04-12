@@ -1,5 +1,4 @@
 import { Link, useNavigate } from 'react-router-dom';
-
 import React, { useState } from 'react';
 import { ReactComponent as MainLogo2 } from '../assets/mainLogo_2.svg';
 
@@ -32,20 +31,20 @@ export default function Register() {
       return alert('비밀번호와 비밀번호 확인은 같아야 합니다.');
     }
     try {
-      const response = await fetch('https://ce5563c1-d776-4ec9-ae46-c931b4bb5314.mock.pstmn.io/register', {
+      const response = await fetch('api/v1/register', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify({ email, password, name }), // 이메일, 비밀번호, 닉네임 등의 정보를 전송
+        body: JSON.stringify({ email, password, name }),
       });
       const data = await response.json();
-      console.log(data); // 서버 응답 처리
+      console.log(data);
 
-      // 가입이 성공하면 로그인 페이지로 이동
-      if (response.ok) {
+      if (response.status === 200) {
+        console.log('성공! 이메일주소: ' + data.email);
         navigate('/login');
-      } else {
+      } else if (response.status === 400) {
         setErrorMessage('가입에 실패하였습니다. 다시 시도해주세요.');
       }
     } catch (error) {

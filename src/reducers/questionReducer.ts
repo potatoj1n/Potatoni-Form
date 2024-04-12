@@ -84,6 +84,13 @@ const { actions: questionActions, reducer: questionReducer } = createSlice({
       const optionIdx = state[questionId].options.findIndex(item => item.id === Number(optionId));
       state[questionId].options[optionIdx].option = optionContent;
     },
+    deleteOption: (state, action) => {
+      const { id, optionId } = action.payload;
+      const question = state.find(item => item.id === id);
+      if (question) {
+        question.options = question.options.filter(option => option.id !== optionId);
+      }
+    },
 
     setNarrativeAnswer: (state, action) => {
       const { id, narrativeContent } = action.payload;
