@@ -3,7 +3,7 @@ import Dropdown from '../components/Form/dropDown';
 import { ReactComponent as CopyIcon } from '../assets/copyIcon.svg';
 import { ReactComponent as DragIcon } from '../assets/dragIcon.svg';
 import { ReactComponent as TrashIcon } from '../assets/trashIcon.svg';
-import { Switch, IconButton } from '@material-ui/core';
+import { Switch, IconButton, Tooltip } from '@material-ui/core';
 import * as QUESTION_TYPES from '../const/questionType';
 import NarrativeQuestion from '../components/Form/narrativeQuestion';
 import OptionalQuestion from '../components/Form/optionalQuestion';
@@ -128,14 +128,18 @@ const QuestionContainer = ({ questionId, provided }: QuestionProps) => {
       <div>{getInput()}</div>
       <hr />
       <div className="flex flex-row justify-end items-center gap-3">
-        <IconButton>
-          <CopyIcon onClick={handleCopyQuestion} />
-        </IconButton>
-        <IconButton>
-          <TrashIcon onClick={handleDeleteQuestion} />
-        </IconButton>
+        <Tooltip title="복사">
+          <IconButton>
+            <CopyIcon onClick={handleCopyQuestion} />
+          </IconButton>
+        </Tooltip>
+        <Tooltip title="삭제">
+          <IconButton>
+            <TrashIcon onClick={handleDeleteQuestion} />
+          </IconButton>
+        </Tooltip>
         <div className="switch-label">필수</div>
-        <Switch checked={isNecessary} onChange={handleSwitch} />
+        <Switch checked={isNecessary} onChange={handleSwitch} color="primary" />
       </div>
     </div>
   );

@@ -6,6 +6,7 @@ import { ReactComponent as MainLogo } from '../assets/mainLogo.svg';
 
 export default function Header() {
   const isLoggedIn = useSelector((state: RootState) => state.auth.isLoggedIn);
+  const userName = useSelector((state: RootState) => state.auth.name);
 
   const dispatch = useDispatch();
 
@@ -15,24 +16,24 @@ export default function Header() {
   };
 
   return (
-    <header className="h-16 mt-1 mx-28 flex justify-between border-b border-gray-200">
+    <header className="h-16 mt-1 mx-24 flex justify-between border-b border-gray-200">
       <Link to="/">
         <MainLogo />
       </Link>
       <div className="flex p-3 font-normal text-base">
         {isLoggedIn ? (
           <>
-            <button onClick={handleLogout} className="border-none rounded-md bg-blue-500 text-white w-24 h-8 mr-2">
+            <button className="w-11 h-11 rounded-3xl border text-sm p-1 mr-3">{userName}</button>
+            <button onClick={handleLogout} className="border-none rounded-md bg-blue-500 text-white w-24 h-9 ">
               Logout
             </button>
-            {/* 여기에 유저 프로필을 표시하는 컴포넌트를 넣으세요 */}
           </>
         ) : (
           <>
-            <button className="border-none rounded-md bg-gray-100 mr-2 text-blue-500 w-20 h-8">
+            <button className="border-none rounded-md bg-gray-100 mr-2 text-blue-500 w-20 h-9">
               <Link to="/login">Login</Link>
             </button>
-            <button className="border-none rounded-md bg-blue-500 text-white w-24 h-8">
+            <button className="border-none rounded-md bg-blue-500 text-white w-24 h-9">
               <Link to="/register">Register</Link>
             </button>
           </>

@@ -7,7 +7,21 @@ import { questionActions } from '../../reducers/questionReducer';
 import { Link } from 'react-router-dom';
 import { v4 as uuidv4 } from 'uuid';
 import * as QUESTION_TYPES from '../../const/questionType';
-import IconButton from '@material-ui/core/IconButton';
+import { IconButton, Tooltip } from '@material-ui/core';
+import { styled } from '@mui/material/styles';
+import CloudUploadIcon from '@mui/icons-material/CloudUpload';
+
+const VisuallyHiddenInput = styled('input')({
+  clip: 'rect(0 0 0 0)',
+  clipPath: 'inset(50%)',
+  height: 1,
+  overflow: 'hidden',
+  position: 'absolute',
+  bottom: 0,
+  left: 0,
+  whiteSpace: 'nowrap',
+  width: 1,
+});
 
 interface Props {
   info: FormProps;
@@ -41,15 +55,25 @@ const SideMenu = ({ info }: Props) => {
   };
 
   return (
-    <div className="flex flex-col justify-around border bg-gray-100 p-2 gap-1 rounded-xl">
+    <div className="flex flex-col justify-around items-baseline border bg-gray-100 p-1 gap-1 rounded-xl">
       <Link to="/preview">
-        <IconButton>
-          <ShowIcon onClick={handlePreview} />
-        </IconButton>
+        <Tooltip title="미리보기" placement="right">
+          <IconButton>
+            <ShowIcon onClick={handlePreview} />
+          </IconButton>
+        </Tooltip>
       </Link>
-      <IconButton>
-        <AddIcon onClick={handleAddQuestion} />
-      </IconButton>
+      <Tooltip title="질문 추가" placement="right">
+        <IconButton>
+          <AddIcon onClick={handleAddQuestion} />
+        </IconButton>
+      </Tooltip>
+      <Tooltip title="파일 추가" placement="right">
+        <IconButton component="label" role={undefined} aria-label="upload file">
+          <CloudUploadIcon />
+          <VisuallyHiddenInput type="file" />
+        </IconButton>
+      </Tooltip>
     </div>
   );
 };

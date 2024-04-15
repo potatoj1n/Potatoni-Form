@@ -28,6 +28,7 @@ const TitleBox = ({ info, handleChange }: Props) => {
             value={info.title}
             onChange={({ target: { value } }) => handleChange && handleChange('title', value)}
           />
+
           <input
             type="text"
             className="p-2 focus:outline-none focus:border-b-2 focus:border-blue-500 "

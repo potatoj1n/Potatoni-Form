@@ -1,18 +1,15 @@
 import { Link } from 'react-router-dom';
+import { useSelector } from 'react-redux';
 import { ReactComponent as Logoimg } from '../../assets/form_logo.svg';
-import { useDispatch } from 'react-redux';
-import { logout } from '../../hooks/authActions';
+import { RootState } from '../../store/store';
+import { Button } from '@material-ui/core';
+import SendIcon from '@mui/icons-material/Send';
 interface FormHeaderProps {
   title: string;
 }
 
 export default function FormHeader({ title }: FormHeaderProps) {
-  const dispatch = useDispatch();
-
-  const handleLogout = () => {
-    dispatch(logout());
-    sessionStorage.clear();
-  };
+  const userName = useSelector((state: RootState) => state.auth.name);
 
   return (
     <header className="h-28 mt-1 flex justify-between ">
@@ -22,11 +19,11 @@ export default function FormHeader({ title }: FormHeaderProps) {
         </Link>
         <h1 className="text-xl font-medium mt-3 ">{title}</h1>
       </div>
-      <div className="flex p-3 font-normal text-base mr-44">
-        <button className="border-none rounded-md bg-blue-500 text-white w-24 h-10 mr-3">보내기</button>
-        <button onClick={handleLogout} className="border-none rounded- text-blue-500 bg-gray-100 w-24 h-10 mr-2">
-          Logout
-        </button>
+      <div className="flex p-3 font-normal text-base mr-32">
+        <Button variant="contained" endIcon={<SendIcon />} className="border-none rounded-mdw-24 h-10" color="primary">
+          보내기
+        </Button>
+        <button className="w-11 h-11 rounded-3xl border text-sm p-1 ml-3">{userName}</button>
       </div>
     </header>
   );

@@ -1,14 +1,19 @@
 import { Link } from 'react-router-dom';
-//import { useState } from 'react';
 import Header from '../components/header';
 import { ReactComponent as FormIcon } from '../assets/form_icon.svg';
-//import form from '../store/store';
+import * as React from 'react';
+import ViewListIcon from '@mui/icons-material/ViewList';
+import ViewModuleIcon from '@mui/icons-material/ViewModule';
+import ViewQuiltIcon from '@mui/icons-material/ViewQuilt';
+import ToggleButton from '@mui/material/ToggleButton';
+import ToggleButtonGroup from '@mui/material/ToggleButtonGroup';
 
 export default function Main() {
-  // const [order, setOrder] = useState('createAt');
-  // const handleNewOrder = () => setOrder('createAt');
-  // const handleOldOrder = () => setOrder('title');
-  // const sortedItems = form.sort((a, b) => b[order] - a[order]);
+  const [view, setView] = React.useState('list');
+
+  const handleChange = (event: React.MouseEvent<HTMLElement>, nextView: string) => {
+    setView(nextView);
+  };
   return (
     <div>
       <Header />
@@ -29,10 +34,6 @@ export default function Main() {
         </div>
         <div>
           <h2 className="font-bold text-2xl mt-16">최근 설문지</h2>
-          <span>
-            <button>최신순</button>
-            <button>A-Z</button>
-          </span>
           <ul>
             <li>최근 설문 항목</li>
             <li></li>
@@ -40,6 +41,19 @@ export default function Main() {
           <button>
             <Link to="/form">Form</Link>
           </button>
+          <div className="fixed right-32 bottom-60">
+            <ToggleButtonGroup orientation="vertical" value={view} exclusive onChange={handleChange}>
+              <ToggleButton value="list" aria-label="list">
+                <ViewListIcon />
+              </ToggleButton>
+              <ToggleButton value="module" aria-label="module">
+                <ViewModuleIcon />
+              </ToggleButton>
+              <ToggleButton value="quilt" aria-label="quilt">
+                <ViewQuiltIcon />
+              </ToggleButton>
+            </ToggleButtonGroup>
+          </div>
         </div>
       </div>
     </div>
