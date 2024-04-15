@@ -1,13 +1,25 @@
 import { createSlice, combineReducers } from '@reduxjs/toolkit';
-import questionReducer from './questionReducer';
-interface FormInfo {
+import questionReducer, { Question } from './questionReducer';
+import { v4 as uuidv4 } from 'uuid';
+
+export interface FormInfo {
+  id: string;
   title: string;
   detail: string;
 }
 
-const initialState: FormInfo = {
-  title: '',
-  detail: '',
+interface FormState {
+  form: FormInfo;
+  questions: Question[];
+}
+
+const initialState: FormState = {
+  form: {
+    id: uuidv4(),
+    title: '',
+    detail: '',
+  },
+  questions: [],
 };
 
 const { actions: formActions, reducer: formReducer } = createSlice({
@@ -15,14 +27,15 @@ const { actions: formActions, reducer: formReducer } = createSlice({
   initialState,
   reducers: {
     addForm: (state, action) => {
-      const { title, detail } = action.payload;
-      state.title = title;
-      state.detail = detail;
+      const { id, title, detail } = action.payload;
+      state.form.id = id;
+      state.form.title = title;
+      state.form.detail = detail;
     },
   },
 });
 
-export { formActions };
+export { formActions, formReducer };
 export default combineReducers({
   form: formReducer,
   questions: questionReducer,

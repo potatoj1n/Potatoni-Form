@@ -6,7 +6,8 @@ import { persistReducer } from 'redux-persist';
 import { combineReducers } from '@reduxjs/toolkit';
 import { persistStore } from 'redux-persist';
 import authReducer from '../reducers/AuthReducer';
-import formReducer from '../reducers/formReducer';
+import { formReducer } from '../reducers/formReducer';
+import questionReducer from '../reducers/questionReducer';
 export type RootState = ReturnType<typeof store.getState>;
 export type AppDispatch = typeof store.dispatch;
 
@@ -22,6 +23,7 @@ const persistConfig = {
 const rootReducer = combineReducers({
   auth: authReducer,
   form: formReducer,
+  questions: questionReducer,
 });
 
 const persistedReducer = persistReducer(persistConfig, rootReducer);
