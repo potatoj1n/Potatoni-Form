@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { ReactComponent as MainLogo2 } from '../assets/mainLogo_2.svg';
+import { Button, TextField } from '@mui/material';
 
 export default function Login() {
   const [email, setEmail] = useState('');
@@ -56,41 +57,53 @@ export default function Login() {
         <form onSubmit={onSubmitHandler}>
           <div className="mt-14 ml-20">
             <h2 className=" mb-3">이메일 주소</h2>
-            <input
+            <TextField
+              id="outlined-password-input"
+              label="email"
               type="email"
-              value={email}
-              className="w-96 h-16 p-3 border rounded-xl outline-none bg-blue-200 focus:border-blue-500 focus:bg-blue-100"
+              autoComplete="current-password"
+              className="w-96 h-16 p-3 "
               onChange={onEmailHandler}
             />
           </div>
-          <div className="mt-10 ml-20">
+          <div className="mt-8 ml-20">
             <h2 className=" mb-3">비밀 번호</h2>
-            <input
+            <TextField
+              id="outlined-password-input"
+              label="Password"
               type="password"
-              value={password}
-              className="w-96 h-16 p-3 border rounded-xl  outline-none bg-blue-200 focus:border-blue-500 focus:bg-blue-100"
+              autoComplete="current-password"
+              className="w-96 h-16 p-3 "
               onChange={onPasswordHandler}
             />
           </div>
-          <button
-            type="submit"
-            className="border rounded-xl w-52 h-16  outline-none border-blue-500 mt-12 ml-44 text-blue-500"
-          >
-            로그인 하기
-          </button>
-          {errorMessage && <p className="text-red-500 ml-28 mt-3">{errorMessage}</p>}
+          <div className="flex justify-center mt-8 ">
+            <Button variant="outlined" type="submit" style={{ fontSize: '19px' }} className="w-52 h-16">
+              로그인 하기
+            </Button>
+          </div>
+          {errorMessage && <p className="text-red-500 text-lg flex justify-center mt-3">{errorMessage}</p>}
         </form>
         <hr className="mt-12 w-96 border-t ml-20 border-gray-700"></hr>
         <div className="flex flex-col">
           <Link to="/register">
-            <button className="w-96 h-16 ml-20 mt-8 border rounded-xl  outline-none border-blue-500 ">
-              구글로 로그인, 회원가입 하기
-            </button>
+            <div className="flex justify-center mt-8">
+              <Button
+                variant="outlined"
+                type="submit"
+                style={{ fontSize: '19px', color: 'black' }}
+                className="w-96 h-16 "
+              >
+                구글로 로그인, 회원가입 하기
+              </Button>
+            </div>
           </Link>
           <Link to="/register">
-            <button className="w-52 h-16 mt-8 ml-44 border rounded-xl  outline-none border-blue-500 text-blue-500">
-              회원가입 하기
-            </button>
+            <div className="flex justify-center mt-8">
+              <Button variant="outlined" type="submit" style={{ fontSize: '19px' }} className="w-52 h-16">
+                회원가입 하기
+              </Button>
+            </div>
           </Link>
         </div>
       </main>
