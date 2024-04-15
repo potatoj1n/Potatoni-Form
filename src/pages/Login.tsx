@@ -58,9 +58,10 @@ export default function Login() {
           <div className="mt-14 ml-20">
             <h2 className=" mb-3">이메일 주소</h2>
             <TextField
-              id="outlined-password-input"
+              id="outlined-email-input"
               label="email"
               type="email"
+              value={email}
               autoComplete="current-password"
               className="w-96 h-16 p-3 "
               onChange={onEmailHandler}
@@ -72,6 +73,7 @@ export default function Login() {
               id="outlined-password-input"
               label="Password"
               type="password"
+              value={password}
               autoComplete="current-password"
               className="w-96 h-16 p-3 "
               onChange={onPasswordHandler}
@@ -100,7 +102,7 @@ export default function Login() {
           </Link>
           <Link to="/register">
             <div className="flex justify-center mt-8">
-              <Button variant="outlined" type="submit" style={{ fontSize: '19px' }} className="w-52 h-16">
+              <Button variant="outlined" style={{ fontSize: '19px' }} className="w-52 h-16">
                 회원가입 하기
               </Button>
             </div>

@@ -1,6 +1,7 @@
 import { Link, useNavigate } from 'react-router-dom';
 import React, { useState } from 'react';
 import { ReactComponent as MainLogo2 } from '../assets/mainLogo_2.svg';
+import { Button, TextField } from '@mui/material';
 
 export default function Register() {
   const [name, setName] = useState('');
@@ -54,60 +55,78 @@ export default function Register() {
   };
 
   return (
-    <div className="flex flex-col items-center">
-      <Link to="/" className="w-36 h-32 mt-20">
+    <div className="flex flex-col items-center ">
+      <Link to="/" className="w-36 h-32 mt-12">
         <MainLogo2 />
       </Link>
-      <main className=" mt-8 font-semibold text-xl" style={{ width: '554px', height: '700px' }}>
+      <main
+        className=" mt-8 font-medium text-xl flex flex-col items-center justify-center"
+        style={{ width: '554px', height: '700px' }}
+      >
         <form onSubmit={onSubmitHandler}>
-          <div className="ml-20">
+          <div className="ml-5">
             <h2 className=" mb-3">이메일 주소</h2>
-            <input
+            <TextField
+              id="outlined-email-input"
+              required
+              label="email"
               type="email"
               value={email}
-              className="w-96 h-14 p-3 border rounded-xl outline-none bg-blue-200  focus:border-blue-500 focus:bg-blue-100"
+              autoComplete="current-password"
+              className="w-96 h-16 p-3 "
               onChange={onEmailHandler}
-            ></input>
+            />
           </div>
-          <div className="mt-6 ml-20">
+          <div className="mt-6 ml-5">
             <h2 className=" mb-3">비밀 번호</h2>
-            <input
+            <TextField
+              id="outlined-password-input"
+              required
+              label="password"
               type="password"
               value={password}
-              className="w-96 h-14 p-3 border rounded-xl  outline-none bg-blue-200 focus:border-blue-500 focus:bg-blue-100"
+              autoComplete="current-password"
+              className="w-96 h-16 p-3 "
               onChange={onPasswordHandler}
-            ></input>
+            />
           </div>
-          <div className="mt-6 ml-20">
+          <div className="mt-6 ml-5">
             <h2 className=" mb-3">비밀 번호 확인</h2>
-            <input
+            <TextField
+              id="outlined-password-input"
+              required
+              label="password"
               type="password"
               value={confirmPassword}
-              className="w-96 h-14 p-3 border rounded-xl  outline-none bg-blue-200 focus:border-blue-500 focus:bg-blue-100"
+              autoComplete="none"
+              className="w-96 h-16 p-3 "
               onChange={onConfirmPasswordHandler}
-            ></input>
+            />
           </div>
-          <div className="mt-6 ml-20">
+          <div className="mt-6 ml-5 ">
             <h2 className=" mb-3">닉네임</h2>
-            <input
-              type="text"
+            <TextField
+              id="outlined-name-input"
+              required
+              label="name"
+              type="name"
               value={name}
-              className="w-96 h-14 p-3 border rounded-xl  outline-none bg-blue-200 focus:border-blue-500 focus:bg-blue-100"
+              autoComplete="none"
+              className="w-96 h-16 p-3 "
               onChange={onNameHandler}
-            ></input>
+            />
           </div>
-          <hr className="mt-12 w-96 border-t ml-20 border-gray-700"></hr>
-          {errorMessage && <p className="text-red-500 ml-20">{errorMessage}</p>}
-          <button
-            type="submit"
-            className="px-6 h-12 mt-8 ml-52 border rounded-xl  outline-none border-blue-500 text-blue-500"
-          >
-            가입 하기
-          </button>
+          <hr className="mt-8 ml-5 w-96 border-t border-gray-700"></hr>
+          <div className="flex flex-col items-center justify-center mt-5">
+            {errorMessage && <p className="text-red-500 text-lg mb-3">{errorMessage}</p>}
+            <Button variant="outlined" type="submit" style={{ fontSize: '19px' }} className="w-36 h-12">
+              가입 하기
+            </Button>
+          </div>
         </form>
-        <p className="ml-20 p-6 mt-2 font-medium text-gray-600">
+        <p className="p-6 mt-1 font-medium text-lg text-gray-600">
           이미 회원이신가요?&nbsp;
-          <Link to="/login" className="underline ml-8 text-gray-600">
+          <Link to="/login" className="hover:underline ml-8 text-gray-600 hover:text-gray-500">
             로그인 하러가기
           </Link>
         </p>

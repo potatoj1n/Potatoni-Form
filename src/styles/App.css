@@ -22,5 +22,6 @@
   .App {
     color: #4a5568;
     cursor: pointer;
+    font-family: 'Pretendard-Regular', 'sans-serif';
   }
 }
