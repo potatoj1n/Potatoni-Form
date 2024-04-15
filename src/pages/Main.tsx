@@ -1,19 +1,15 @@
 import { Link } from 'react-router-dom';
+import useAppSelector from '../hooks/useAppSelector';
 import Header from '../components/header';
-import { ReactComponent as FormIcon } from '../assets/form_icon.svg';
-import * as React from 'react';
-import ViewListIcon from '@mui/icons-material/ViewList';
-import ViewModuleIcon from '@mui/icons-material/ViewModule';
-import ViewQuiltIcon from '@mui/icons-material/ViewQuilt';
-import ToggleButton from '@mui/material/ToggleButton';
-import ToggleButtonGroup from '@mui/material/ToggleButtonGroup';
+import LibraryAddIcon from '@mui/icons-material/LibraryAdd';
+import NoteAddIcon from '@mui/icons-material/NoteAdd';
+import { IconButton } from '@material-ui/core';
+import { Key } from 'react';
 
 export default function Main() {
-  const [view, setView] = React.useState('list');
+  const isLoggedIn = useAppSelector(state => state.auth.isLoggedIn);
+  const userForms = useAppSelector(state => state.form.form);
 
-  const handleChange = (event: React.MouseEvent<HTMLElement>, nextView: string) => {
-    setView(nextView);
-  };
   return (
     <div>
       <Header />
@@ -26,34 +22,50 @@ export default function Main() {
               당신의 의견을 효과적으로 모아줄 혁신적인 플랫폼, 새로운 아이디어를 발견하세요!
             </p>
           </div>
-          <button className="border bg-white rounded-2xl w-80 h-52 mr-36 mb-10 px-28 py-8">
-            <Link to="/form">
-              <FormIcon />
-            </Link>
-          </button>
+          {isLoggedIn ? (
+            <>
+              <button className="border bg-white rounded-2xl w-80 h-52 mr-36 mb-10 px-28 py-8">
+                <Link to="/form">
+                  <LibraryAddIcon sx={{ fontSize: 80 }} />
+                </Link>
+              </button>
+            </>
+          ) : (
+            <>
+              <button className="border bg-white rounded-2xl w-80 h-52 mr-36 mb-10 px-28 py-8">
+                <Link to="/Login">
+                  <IconButton>
+                    <LibraryAddIcon sx={{ fontSize: 80 }} />
+                  </IconButton>
+                </Link>
+              </button>
+            </>
+          )}
         </div>
         <div>
-          <h2 className="font-bold text-2xl mt-16">최근 설문지</h2>
-          <ul>
-            <li>최근 설문 항목</li>
-            <li></li>
-          </ul>
-          <button>
-            <Link to="/form">Form</Link>
-          </button>
-          <div className="fixed right-32 bottom-60">
-            <ToggleButtonGroup orientation="vertical" value={view} exclusive onChange={handleChange}>
-              <ToggleButton value="list" aria-label="list">
-                <ViewListIcon />
-              </ToggleButton>
-              <ToggleButton value="module" aria-label="module">
-                <ViewModuleIcon />
-              </ToggleButton>
-              <ToggleButton value="quilt" aria-label="quilt">
-                <ViewQuiltIcon />
-              </ToggleButton>
-            </ToggleButtonGroup>
-          </div>
+          <h2 className="font-bold text-2xl mt-14 mb-3">최근 설문지</h2>
+          {isLoggedIn ? (
+            <ul>
+              {Array.isArray(userForms) &&
+                userForms.map((form: { id: Key | null | undefined }) => (
+                  <li key={form.id}>
+                    <Link to={`/form/${form.id}`}>
+                      <button className="border bg-white rounded-xl w-52 h-60 mr-36 mb-10 p-3"></button>
+                    </Link>
+                  </li>
+                ))}
+            </ul>
+          ) : (
+            <ul>
+              <li>
+                <Link to="/form">
+                  <button className="border bg-white rounded-xl w-52 h-60 mr-36 mb-10 p-3">
+                    <NoteAddIcon sx={{ fontSize: 50 }} />
+                  </button>
+                </Link>
+              </li>
+            </ul>
+          )}
         </div>
       </div>
     </div>
