@@ -14,7 +14,7 @@ const TitleBox = ({ info, handleChange }: Props) => {
   const location = useLocation();
   const { pathname } = location;
   const isPreview = pathname === '/preview';
-  const isResult = pathname === '/response';
+  const isResult = pathname === '/form/responseCheck';
 
   return (
     <div>

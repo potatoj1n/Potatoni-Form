@@ -19,7 +19,7 @@ const Dropdown = ({ questionId, menus, isAnswer }: Props) => {
   const dispatch = useDispatch();
   const location = useLocation();
   const isPreview = location.pathname === '/preview';
-  const isResult = location.pathname === '/response';
+  const isResult = location.pathname === '/form/responseCheck';
 
   const { questions } = useAppSelector(state => state.form);
   const question = questions.find(item => item.id === questionId);

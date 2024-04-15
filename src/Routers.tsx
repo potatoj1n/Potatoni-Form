@@ -12,7 +12,7 @@ const Routers = createBrowserRouter([
   { path: '/register', element: <Register /> },
   { path: '/form', element: <Form /> },
   { path: '/form/responseCheck', element: <ResponseCheck /> },
-  { path: '/viewForm', element: <Preview /> },
+  { path: '/preview', element: <Preview /> },
   { path: '/response', element: <Response /> },
 ]);
 

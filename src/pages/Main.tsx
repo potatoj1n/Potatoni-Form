@@ -4,11 +4,10 @@ import Header from '../components/header';
 import LibraryAddIcon from '@mui/icons-material/LibraryAdd';
 import NoteAddIcon from '@mui/icons-material/NoteAdd';
 import { IconButton } from '@material-ui/core';
-import { Key } from 'react';
 
 export default function Main() {
   const isLoggedIn = useAppSelector(state => state.auth.isLoggedIn);
-  const userForms = useAppSelector(state => state.form.form);
+  const userForms = useAppSelector(state => state.form);
 
   return (
     <div>
@@ -47,7 +46,7 @@ export default function Main() {
           {isLoggedIn ? (
             <ul>
               {Array.isArray(userForms) &&
-                userForms.map((form: { id: Key | null | undefined }) => (
+                userForms.map(form => (
                   <li key={form.id}>
                     <Link to={`/form/${form.id}`}>
                       <button className="border bg-white rounded-xl w-52 h-60 mr-36 mb-10 p-3"></button>
@@ -58,7 +57,7 @@ export default function Main() {
           ) : (
             <ul>
               <li>
-                <Link to="/form">
+                <Link to="/login">
                   <button className="border bg-white rounded-xl w-52 h-60 mr-36 mb-10 p-3">
                     <NoteAddIcon sx={{ fontSize: 50 }} />
                   </button>
