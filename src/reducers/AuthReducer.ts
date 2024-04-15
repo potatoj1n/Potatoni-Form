@@ -1,11 +1,11 @@
 import { createSlice } from '@reduxjs/toolkit';
-import FormInfo from '../reducers/formReducer';
+import { FormInfo } from '../reducers/formReducer';
 
 export interface UserState {
   id: string;
   name: string;
   isLoggedIn: boolean;
-  forms: (typeof FormInfo)[];
+  forms: FormInfo[];
 }
 
 const initialState: UserState = {

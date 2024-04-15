@@ -16,7 +16,7 @@ interface FormState {
 const initialState: FormState = {
   form: {
     id: uuidv4(),
-    title: '',
+    title: '제목 없는 설문지',
     detail: '',
   },
   questions: [],
