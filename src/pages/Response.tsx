@@ -10,7 +10,7 @@ const Response = () => {
   const handleSubmit = async () => {
     try {
       const formData = JSON.stringify({ form });
-      const response = await fetch('https://your-backend-server.com/submit', {
+      const response = await fetch('api/v1/response', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -31,7 +31,7 @@ const Response = () => {
   return (
     <div className="bg-blue-200 w-full flex flex-col justify-items-start items-center flex-grow h-screen">
       <div className="mt-20 w-1/2 flex flex-col mb-5 h-auto">
-        <TitleBox info={form.form} />
+        <TitleBox info={form.form.form} />
       </div>
       <div className="w-1/2 h-auto">
         {questions.map(question => (

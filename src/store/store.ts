@@ -1,12 +1,10 @@
-import { configureStore } from '@reduxjs/toolkit';
+import { configureStore, combineReducers } from '@reduxjs/toolkit';
 import localStorage from 'redux-persist/es/storage';
 import { useDispatch, useSelector } from 'react-redux';
 import type { TypedUseSelectorHook } from 'react-redux';
-import { persistReducer } from 'redux-persist';
-import { combineReducers } from '@reduxjs/toolkit';
-import { persistStore } from 'redux-persist';
+import { persistReducer, persistStore } from 'redux-persist';
 import authReducer from '../reducers/AuthReducer';
-import { formReducer } from '../reducers/formReducer';
+import formReducer from '../reducers/formReducer';
 import questionReducer from '../reducers/questionReducer';
 export type RootState = ReturnType<typeof store.getState>;
 export type AppDispatch = typeof store.dispatch;

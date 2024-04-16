@@ -14,8 +14,8 @@ const Form = () => {
   const dispatch = useDispatch();
 
   const [info, setInfo] = useState({
-    title: form.title,
-    detail: '',
+    title: form.form.title,
+    detail: form.form.detail,
   });
 
   const handleInfo = (name: string, value: string) => {
@@ -63,7 +63,7 @@ const Form = () => {
       </div>
       <div className="flex flex-col justify-start items-center flex-grow bg-blue-200">
         <main className="w-3/5 max-w-screen-lg">
-          <TitleBox info={info} handleChange={handleInfo} />
+          <TitleBox info={{ id: form.form.id, title: info.title, detail: info.detail }} handleChange={handleInfo} />
           <DragDropContext onDragEnd={onDragEnd}>
             <Droppable droppableId="droppable">
               {provided => (

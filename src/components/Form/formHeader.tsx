@@ -46,7 +46,7 @@ export default function FormHeader({ title }: FormHeaderProps) {
           autoHideDuration={1500}
           onClose={handleCloseSnackbar}
           message="폼 링크가 클립보드에 복사되었습니다."
-          anchorOrigin={{ vertical: 'top', horizontal: 'right' }}
+          anchorOrigin={{ vertical: 'top', horizontal: 'center' }}
         />
         <button className="w-11 h-11 rounded-3xl border text-sm p-1 ml-3">{userName}</button>
       </div>

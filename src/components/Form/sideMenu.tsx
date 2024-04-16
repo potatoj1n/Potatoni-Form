@@ -1,6 +1,5 @@
 import { ReactComponent as ShowIcon } from '../../assets/previewIcon.svg';
 import { ReactComponent as AddIcon } from '../../assets/addIcon.svg';
-import { FormProps } from './TitleBox';
 import { useDispatch } from 'react-redux';
 import { formActions } from '../../reducers/formReducer';
 import { questionActions } from '../../reducers/questionReducer';
@@ -24,7 +23,10 @@ const VisuallyHiddenInput = styled('input')({
 });
 
 interface Props {
-  info: FormProps;
+  info: {
+    title: string;
+    detail: string;
+  };
 }
 
 const newQuestion = (newId: string) => ({

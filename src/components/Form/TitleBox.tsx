@@ -1,6 +1,7 @@
 import { useLocation } from 'react-router-dom';
 
 export interface FormProps {
+  id: string;
   title: string;
   detail: string;
 }
