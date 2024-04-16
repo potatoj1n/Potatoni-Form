@@ -59,7 +59,7 @@ const Form = () => {
         <Link to="/form" className="text-blue-500 border-blue-500 border-b-2">
           질문
         </Link>
-        <Link to="/response">응답</Link>
+        <Link to="/form/ResponseCheck">응답</Link>
       </div>
       <div className="flex flex-col justify-start items-center flex-grow bg-blue-200">
         <main className="w-3/5 max-w-screen-lg">

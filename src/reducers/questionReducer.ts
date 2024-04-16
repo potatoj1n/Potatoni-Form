@@ -74,16 +74,23 @@ const { actions: questionActions, reducer: questionReducer } = createSlice({
 
     addOption: (state, action) => {
       const { id, optionId } = action.payload;
-      const questionId = state.findIndex(item => item.id === String(id));
-      state[questionId].options.push(getNewOption(optionId));
+      const question = state.find(item => item.id === id);
+      if (question) {
+        const newOption = getNewOption(optionId);
+        question.options.push(newOption);
+      }
     },
-
     setOptionContent: (state, action) => {
       const { id, optionId, optionContent } = action.payload;
-      const questionId = state.findIndex(item => item.id === String(id));
-      const optionIdx = state[questionId].options.findIndex(item => item.id === Number(optionId));
-      state[questionId].options[optionIdx].option = optionContent;
+      const question = state.find(item => item.id === id);
+      if (question) {
+        const option = question.options.find(item => item.id === optionId);
+        if (option) {
+          option.option = optionContent;
+        }
+      }
     },
+
     deleteOption: (state, action) => {
       const { id, optionId } = action.payload;
       const question = state.find(item => item.id === id);
