@@ -35,7 +35,7 @@ const { actions: formActions, reducer: formReducer } = createSlice({
   },
 });
 
-export { formActions };
+export { formActions, formReducer };
 export default combineReducers({
   form: formReducer,
   questions: questionReducer,

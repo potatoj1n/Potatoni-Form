@@ -15,7 +15,7 @@ const Preview = () => {
   };
 
   return (
-    <div className="bg-blue-200 w-full flex flex-col justify-items-start items-center flex-grow h-screen">
+    <div className="bg-blue-200 w-full flex flex-col justify-items-start items-center flex-grow h-auto">
       <div className="border rounded-2xl mt-20 w-1/2 flex border-t-blue-500 border-t-8 flex-col mb-5 h-auto bg-white p-8">
         <TitleBox info={form.form.form} />
       </div>
@@ -25,7 +25,7 @@ const Preview = () => {
         ))}
       </div>
       <div className="flex flex-row w-1/2 justify-between items-center">
-        <Link to="/response">
+        <Link to="/form/responseCheck">
           <button className="border-none rounded-md bg-blue-500 text-white w-20 p-3 ml-1">제 출</button>
         </Link>
         <div className="text-blue-500 mr-1" onClick={handleReset}>

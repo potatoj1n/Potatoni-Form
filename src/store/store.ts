@@ -1,5 +1,5 @@
 import { configureStore, combineReducers } from '@reduxjs/toolkit';
-import localStorage from 'redux-persist/es/storage';
+import sessionStorage from 'redux-persist/es/storage';
 import { useDispatch, useSelector } from 'react-redux';
 import type { TypedUseSelectorHook } from 'react-redux';
 import { persistReducer, persistStore } from 'redux-persist';
@@ -14,8 +14,8 @@ export const useAppSelector: TypedUseSelectorHook<RootState> = useSelector;
 
 const persistConfig = {
   key: 'root',
-  storage: localStorage,
-  whitelist: ['login'],
+  storage: sessionStorage,
+  whitelist: ['login', 'form'],
 };
 
 const rootReducer = combineReducers({

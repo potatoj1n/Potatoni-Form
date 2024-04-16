@@ -73,13 +73,13 @@ const OptionalQuestion = ({ type, optionId, questionId, optionContent, isLast, i
     <div className="flex flex-row justify-start gap-4">
       {showOptionButton()}
       {isPreview || isResult ? (
-        <div>
+        <div className="w-full">
+          {optionContent}
           {!isDisabled() && (
             <IconButton aria-label="delete" onClick={handleDeleteOption}>
               <DeleteIcon />
             </IconButton>
           )}
-          {optionContent}
         </div>
       ) : (
         <div className="w-full">
