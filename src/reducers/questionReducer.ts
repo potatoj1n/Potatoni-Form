@@ -101,8 +101,10 @@ const { actions: questionActions, reducer: questionReducer } = createSlice({
 
     setNarrativeAnswer: (state, action) => {
       const { id, narrativeContent } = action.payload;
-      const questionId = state.findIndex(item => item.id === String(id));
-      state[questionId].narrativeAnswer = narrativeContent;
+      const question = state.find(item => item.id === id);
+      if (question) {
+        question.narrativeAnswer = narrativeContent;
+      }
     },
 
     markOneAnswer: (state, action) => {
