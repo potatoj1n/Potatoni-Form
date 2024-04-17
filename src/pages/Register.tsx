@@ -32,7 +32,7 @@ export default function Register() {
       return alert('비밀번호와 비밀번호 확인은 같아야 합니다.');
     }
     try {
-      const response = await fetch('api/v1/register', {
+      const response = await fetch('api/v1/signup', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

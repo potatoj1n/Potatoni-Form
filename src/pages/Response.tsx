@@ -1,4 +1,4 @@
-import { Link } from 'react-router-dom';
+//import { Link } from 'react-router-dom';
 import TitleBox from '../components/Form/TitleBox';
 import PreviewContainer from '../containers/previewContainer';
 import useAppSelector from '../hooks/useAppSelector';
@@ -25,11 +25,12 @@ const Response = () => {
       }
     } catch (error) {
       console.error('제출에 실패했습니다:', error);
+      alert('제출에 실패했습니다.');
     }
   };
 
   return (
-    <div className="bg-blue-200 w-full flex flex-col justify-items-start items-center flex-grow h-screen">
+    <div className="bg-blue-200 w-full flex flex-col justify-items-start items-center flex-grow h-auto">
       <div className="mt-20 w-1/2 flex flex-col mb-5 h-auto">
         <TitleBox info={form.form.form} />
       </div>
@@ -39,11 +40,9 @@ const Response = () => {
         ))}
       </div>
       <div className="flex flex-row w-1/2 justify-between items-center">
-        <Link to="/">
-          <button onClick={handleSubmit} className="border-none rounded-md bg-blue-500 text-white w-20 p-3 ml-1">
-            제 출
-          </button>
-        </Link>
+        <button onClick={handleSubmit} className="border-none rounded-md bg-blue-500 text-white w-20 p-3 ml-1">
+          제 출
+        </button>
       </div>
     </div>
   );

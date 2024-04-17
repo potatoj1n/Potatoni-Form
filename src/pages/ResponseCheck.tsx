@@ -19,10 +19,10 @@ const ResponseCheck = () => {
       </div>
       <div className="flex flex-col justify-start items-center flex-grow bg-blue-200">
         <main className="w-3/5 max-w-screen-lg text-xl">
-          <div className="border bg-white rounded-xl my-5 p-8">
+          <div className="">
             <TitleBox info={form.form.form} />
           </div>
-          <div>
+          <div className="">
             {questions.map(question => (
               <PreviewContainer key={question.id} questionId={question.id} />
             ))}

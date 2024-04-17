@@ -18,7 +18,7 @@ const OptionalQuestion = ({ type, optionId, questionId, optionContent, isLast, i
   const dispatch = useDispatch();
   const location = useLocation();
   const isPreview = location.pathname === '/preview';
-  const isResult = location.pathname === '/form/responseCheck';
+  const isResult = location.pathname === '/responseCheck';
 
   const handleAddOption = () => {
     isLast && dispatch(questionActions.addOption({ id: questionId, optionId }));
@@ -97,6 +97,7 @@ const OptionalQuestion = ({ type, optionId, questionId, optionContent, isLast, i
           )}
         </div>
       )}
+      {}
     </div>
   );
 };

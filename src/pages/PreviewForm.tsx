@@ -25,7 +25,7 @@ const Preview = () => {
         ))}
       </div>
       <div className="flex flex-row w-1/2 justify-between items-center">
-        <Link to="/form/responseCheck">
+        <Link to="/responseCheck">
           <button className="border-none rounded-md bg-blue-500 text-white w-20 p-3 ml-1">제 출</button>
         </Link>
         <div className="text-blue-500 mr-1" onClick={handleReset}>

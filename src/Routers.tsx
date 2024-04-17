@@ -11,7 +11,7 @@ const Routers = createBrowserRouter([
   { path: '/login', element: <Login /> },
   { path: '/register', element: <Register /> },
   { path: '/form', element: <Form /> },
-  { path: '/form/responseCheck', element: <ResponseCheck /> },
+  { path: '/responseCheck', element: <ResponseCheck /> },
   { path: '/preview', element: <Preview /> },
   { path: '/response', element: <Response /> },
 ]);
