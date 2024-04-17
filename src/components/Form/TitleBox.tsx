@@ -14,7 +14,7 @@ interface Props {
 const TitleBox = ({ info, handleChange }: Props) => {
   const location = useLocation();
   const { pathname } = location;
-  const isPreview = pathname === '/preview';
+  const isPreview = pathname === '/preview' || location.pathname === '/response';
   const isResult = pathname === '/responseCheck';
 
   return (

@@ -18,7 +18,7 @@ interface Props {
 const Dropdown = ({ questionId, menus, isAnswer }: Props) => {
   const dispatch = useDispatch();
   const location = useLocation();
-  const isPreview = location.pathname === '/preview';
+  const isPreview = location.pathname === '/preview' || location.pathname === '/response';
   const isResult = location.pathname === '/responseCheck';
 
   const { questions } = useAppSelector(state => state.form);

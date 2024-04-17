@@ -17,7 +17,7 @@ interface QuestionProps {
 const OptionalQuestion = ({ type, optionId, questionId, optionContent, isLast, isAnswer }: QuestionProps) => {
   const dispatch = useDispatch();
   const location = useLocation();
-  const isPreview = location.pathname === '/preview';
+  const isPreview = location.pathname === '/preview' || location.pathname === '/response';
   const isResult = location.pathname === '/responseCheck';
 
   const handleAddOption = () => {
@@ -70,17 +70,10 @@ const OptionalQuestion = ({ type, optionId, questionId, optionContent, isLast, i
   };
 
   return (
-    <div className="flex flex-row justify-start gap-4">
+    <div className="flex flex-row justify-start items-center gap-4">
       {showOptionButton()}
       {isPreview || isResult ? (
-        <div className="w-full">
-          {optionContent}
-          {!isDisabled() && (
-            <IconButton aria-label="delete" onClick={handleDeleteOption}>
-              <DeleteIcon />
-            </IconButton>
-          )}
-        </div>
+        <div className="w-full">{optionContent}</div>
       ) : (
         <div className="w-full">
           <input
@@ -97,7 +90,6 @@ const OptionalQuestion = ({ type, optionId, questionId, optionContent, isLast, i
           )}
         </div>
       )}
-      {}
     </div>
   );
 };

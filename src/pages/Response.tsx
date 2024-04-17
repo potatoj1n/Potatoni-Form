@@ -31,7 +31,7 @@ const Response = () => {
 
   return (
     <div className="bg-blue-200 w-full flex flex-col justify-items-start items-center flex-grow h-auto">
-      <div className="mt-20 w-1/2 flex flex-col mb-5 h-auto">
+      <div className="border rounded-2xl mt-20 w-1/2 flex border-t-blue-500 border-t-8 flex-col mb-5 h-auto bg-white p-8">
         <TitleBox info={form.form.form} />
       </div>
       <div className="w-1/2 h-auto">

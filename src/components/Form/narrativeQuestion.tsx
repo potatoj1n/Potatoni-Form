@@ -11,8 +11,8 @@ interface QuestionProps {
 const NarrativeQuestion = ({ type, questionId }: QuestionProps) => {
   const location = useLocation();
   const dispatch = useDispatch();
-  const isPreview = location.pathname === '/preview';
-  const isResult = location.pathname === '/form/responseCheck';
+  const isPreview = location.pathname === '/preview' || location.pathname === '/response';
+  const isResult = location.pathname === '/responseCheck';
   const { questions } = useAppSelector(state => state.form);
   const question = questions?.find(item => item.id === questionId);
 
