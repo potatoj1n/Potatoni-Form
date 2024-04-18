@@ -1,4 +1,5 @@
 name: CI #수행결과 확인할때 헷갈리지 않게 서비스명 적읍시다
+
 on:
   push:
     branches: [main]
@@ -31,29 +32,9 @@ jobs:
       # 해당 프로젝트의 node_modules에 변화가 있을 때마다 pnpm install을 해준다.
       # GitHub Actions는 이미 pnpm을 캐싱 옵션으로 지원하기 때문에 별도의 캐싱 스텝은 필요 없다.
       - name: Install Dependencies
-        run: pnpm install
-
-      - name: Build
-        run: pnpm build
-
-      # 해당 프로젝트의 node_modules에 변화가 있을 때마다 npm install을 해준다.
-      - name: Cache node modules
-        uses: actions/cache@v2.1.8
-
-        # 해당 step을 대표하는 id를 설정할 수도 있다. 해당 값은 뒤의 step에서 사용한다.
-        id: cache
-        with:
-          # node_modules라는 폴더를 검사하여
-          path: node_modules
-          # 아래 키값으로 cache가 돼있는지 확인한다.
-          key: pnpm-packages-${{ hashFiles('**/package-lock.json') }}
-
-      # 위 step에서 node_modules에 대한 cache 검사를 했다.
-      # 모듈에 변화가 있다면 npm i를 실행하고 아니면 해당 step을 건너뛴다.
-      # 위 스텝에서 정한 cache를 steps.cache로 가져와서 true가 아닐때만 npm i를 실행한다.
-      - name: Install Dependencies
         if: steps.cache.outputs.cache-hit != 'true'
         run: pnpm install
+
       - name: Build
         run: pnpm build
 
