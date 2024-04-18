@@ -33,17 +33,16 @@ jobs:
           # node_modules라는 폴더를 검사하여
           path: node_modules
           # 아래 키값으로 cache가 돼있는지 확인한다.
-          key: npm-packages-${{ hashFiles('**/package-lock.json') }}
+          key: pnpm-packages-${{ hashFiles('**/package-lock.json') }}
 
       # 위 step에서 node_modules에 대한 cache 검사를 했다.
       # 모듈에 변화가 있다면 npm i를 실행하고 아니면 해당 step을 건너뛴다.
       # 위 스텝에서 정한 cache를 steps.cache로 가져와서 true가 아닐때만 npm i를 실행한다.
       - name: Install Dependencies
         if: steps.cache.outputs.cache-hit != 'true'
-        run: npm install
-
+        run: pnpm install
       - name: Build
-        run: npm run build
+        run: pnpm run build
 
       # Docker에 연결하여 이미지를 빌드하고 Hub에 푸시한다.
       - name: 도커 이미지 빌드
