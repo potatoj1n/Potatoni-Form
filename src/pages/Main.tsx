@@ -32,7 +32,7 @@ export default function Main() {
           ) : (
             <>
               <button className="border bg-white rounded-2xl w-80 h-52 mr-36 mb-10 px-28 py-8">
-                <Link to="/Login">
+                <Link to="/form">
                   <IconButton>
                     <LibraryAddIcon sx={{ fontSize: 80 }} />
                   </IconButton>
