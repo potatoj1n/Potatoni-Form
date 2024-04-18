@@ -13,25 +13,40 @@ permissions:
 jobs:
   build:
     runs-on: ubuntu-latest
+
     steps:
       - name: Checkout
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
 
-      # pnpm 설치
-      - name: Install pnpm
-        run: npm install -g pnpm
+      - name: Install Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: 'npm'
 
-      # 환경 변수 설정
-      - name: Set pnpm path
-        run: echo "::add-path::/usr/local/bin"
-
-      - name: Setup pnpm
-        uses: pnpm/action-setup@v2
+      - uses: pnpm/action-setup@v3
+        name: Setup pnpm
         with:
           version: 8
+          run_install: false
+      - name: Get pnpm store directory
+        shell: bash
+        run: |
+          echo "STORE_PATH=$(pnpm store path --silent)" >> $GITHUB_ENV
 
-      - name: install dependencies and build
-        run: pnpm install --frozen-lockfile && pnpm run build
+      - uses: actions/cache@v4
+        name: Setup pnpm cache
+        with:
+          path: ${{ env.STORE_PATH }}
+          key: ${{ runner.os }}-pnpm-store-${{ hashFiles('**/pnpm-lock.yaml') }}
+          restore-keys: |
+            ${{ runner.os }}-pnpm-store-
+
+      - name: Install dependencies
+        run: pnpm install
+
+      - name: Build
+        run: pnpm build
 
       # Docker에 연결하여 이미지를 빌드하고 Hub에 푸시한다.
       - name: 도커 이미지 빌드
