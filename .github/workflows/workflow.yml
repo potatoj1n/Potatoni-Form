@@ -22,6 +22,19 @@ jobs:
         uses: actions/setup-node@v2.5.2
         with:
           node-version: lts/Hydrogen
+          cache: 'pnpm'
+
+      # pnpm 설치
+      - name: Install pnpm
+        run: npm install -g pnpm
+
+      # 해당 프로젝트의 node_modules에 변화가 있을 때마다 pnpm install을 해준다.
+      # GitHub Actions는 이미 pnpm을 캐싱 옵션으로 지원하기 때문에 별도의 캐싱 스텝은 필요 없다.
+      - name: Install Dependencies
+        run: pnpm install
+
+      - name: Build
+        run: pnpm build
 
       # 해당 프로젝트의 node_modules에 변화가 있을 때마다 npm install을 해준다.
       - name: Cache node modules
