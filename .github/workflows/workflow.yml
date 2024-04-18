@@ -14,31 +14,18 @@ jobs:
   build:
     runs-on: ubuntu-latest
 
-    steps:
-      # GitHub Action은 해당 프로젝트가 만들어진 환경에서 checkout하고 나거 실행한다.
-      - uses: actions/checkout@v3
+      steps:
+      - name: Checkout
+        uses: actions/checkout@v3
 
-      # Node.js 위에서 실행하겠다고 명시한다.
-      - name: Setup Node.js environment
-        uses: actions/setup-node@v2.5.2
+      - name: Setup pnpm
+        uses: pnpm/action-setup@v2
         with:
-          node-version: lts/*
-          cache: 'pnpm'
+          version: 8
 
-      # pnpm 설치
-      - name: Install pnpm
-        run: npm install -g pnpm
+      - name: install dependencies and build
+        run: pnpm install --frozen-lockfile && pnpm run build
 
-      # 해당 프로젝트의 node_modules에 변화가 있을 때마다 pnpm install을 해준다.
-      # GitHub Actions는 이미 pnpm을 캐싱 옵션으로 지원하기 때문에 별도의 캐싱 스텝은 필요 없다.
-      - name: Install Dependencies
-        if: steps.cache.outputs.cache-hit != 'true'
-        run: |
-          export PATH="/usr/local/bin:$PATH"
-          pnpm install
-
-      - name: Build
-        run: pnpm build
 
       # Docker에 연결하여 이미지를 빌드하고 Hub에 푸시한다.
       - name: 도커 이미지 빌드
