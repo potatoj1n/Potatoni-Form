@@ -15,8 +15,8 @@
     "@testing-library/user-event": "^13.5.0",
     "@types/jest": "^27.5.2",
     "@types/node": "^16.18.94",
-    "@types/react": "^18.2.74",
-    "@types/react-dom": "^18.2.23",
+    "@types/react": "^18.0.0",
+    "@types/react-dom": "^18.0.0",
     "@types/redux-thunk": "^2.1.0",
     "axios": "^1.6.8",
     "react": "^18.2.0",
@@ -29,7 +29,6 @@
     "redux": "^5.0.1",
     "redux-devtools-extension": "^2.13.9",
     "redux-persist": "^6.0.0",
-    "redux-promise": "^0.6.0",
     "redux-thunk": "^3.1.0",
     "uuid": "^9.0.1",
     "web-vitals": "^2.1.4"

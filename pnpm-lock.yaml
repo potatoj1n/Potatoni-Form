@@ -42,10 +42,10 @@ dependencies:
     specifier: ^16.18.94
     version: 16.18.94
   '@types/react':
-    specifier: ^18.2.74
+    specifier: ^18.0.0
     version: 18.2.74
   '@types/react-dom':
-    specifier: ^18.2.23
+    specifier: ^18.0.0
     version: 18.2.23
   '@types/redux-thunk':
     specifier: ^2.1.0
@@ -83,9 +83,6 @@ dependencies:
   redux-persist:
     specifier: ^6.0.0
     version: 6.0.0(react@18.2.0)(redux@5.0.1)
-  redux-promise:
-    specifier: ^0.6.0
-    version: 0.6.0
   redux-thunk:
     specifier: ^3.1.0
     version: 3.1.0(redux@5.0.1)
@@ -6244,13 +6241,6 @@ packages:
   /flatted@3.3.1:
     resolution: {integrity: sha512-X8cqMLLie7KsNUDSdzeN8FYK9rEt4Dt67OsG/DNGnYTSDBG4uFAJFBnUeiV+zCVAvwFy56IjM9sH51jVaEhNxw==}
 
-  /flux-standard-action@2.1.2:
-    resolution: {integrity: sha512-7vdgawlphCjzaMLdpZv8hlGC/FJCXu6sqE3Wuqe3HLZ22KcDiO4IFplxLDePDhEt6hgCrugt45RoUObuzZP6Kg==}
-    dependencies:
-      lodash.isplainobject: 4.0.6
-      lodash.isstring: 4.0.1
-    dev: false
-
   /follow-redirects@1.15.6:
     resolution: {integrity: sha512-wWN62YITEaOpSK584EZXJafH1AGpO8RVgElfkuXbTOrPX4fIfOyEpW/CsiNd8JdYrAoOvafRTOEnvsO++qCqFA==}
     engines: {node: '>=4.0'}
@@ -7005,10 +6995,6 @@ packages:
 
   /is-potential-custom-element-name@1.0.1:
     resolution: {integrity: sha512-bCYeRA2rVibKZd+s2625gGnGF/t7DSqDs4dP7CrLA1m7jKWz6pps0LpYLJN8Q64HtmPKJ1hrN3nzPNKFEKOUiQ==}
-    dev: false
-
-  /is-promise@2.2.2:
-    resolution: {integrity: sha512-+lP4/6lKUBfQjZ2pdxThZvLUAafmZb8OAxFb8XXtiQmS35INgr85hdOGoEs124ez1FCnZJt6jau/T+alh58QFQ==}
     dev: false
 
   /is-regex@1.1.4:
@@ -8032,14 +8018,6 @@ packages:
 
   /lodash.debounce@4.0.8:
     resolution: {integrity: sha512-FT1yDzDYEoYWhnSGnpE/4Kj1fLZkDFyqRb7fNt6FdYOSxlUWAtp42Eh6Wb0rGIv/m9Bgo7x4GhQbm5Ys4SG5ow==}
-    dev: false
-
-  /lodash.isplainobject@4.0.6:
-    resolution: {integrity: sha512-oSXzaWypCMHkPC3NvBEaPHf0KsA5mvPrOPgQWDsbg8n7orZ290M0BmC/jgRZ4vcJ6DTAhjrsSYgdsW/F+MFOBA==}
-    dev: false
-
-  /lodash.isstring@4.0.1:
-    resolution: {integrity: sha512-0wJxfxH1wgO3GrbuP+dTTk7op+6L41QCXbGINEmD+ny/G/eCqGzxyCsh7159S+mgDDcoarnBw6PC1PS5+wUGgw==}
     dev: false
 
   /lodash.memoize@4.1.2:
@@ -9945,13 +9923,6 @@ packages:
     dependencies:
       react: 18.2.0
       redux: 5.0.1
-    dev: false
-
-  /redux-promise@0.6.0:
-    resolution: {integrity: sha512-R2mGxJbPFgXyCNbFDE6LjTZhCEuACF54g1bxld3nqBhnRMX0OsUyWk77moF7UMGkUdl5WOAwc4BC5jOd1dunqQ==}
-    dependencies:
-      flux-standard-action: 2.1.2
-      is-promise: 2.2.2
     dev: false
 
   /redux-thunk@3.1.0(redux@5.0.1):
