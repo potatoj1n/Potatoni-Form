@@ -1,5 +1,8 @@
 FROM node:lts as build
 
+# pnpm 설치
+RUN npm install -g pnpm
+
 WORKDIR /app
 
 COPY package.json .
@@ -23,3 +26,4 @@ EXPOSE 80
 
 # nginx 실행
 CMD [ "nginx", "-g", "daemon off;" ]
+
