@@ -22,7 +22,7 @@ jobs:
       - name: Setup Node.js environment
         uses: actions/setup-node@v2.5.2
         with:
-          node-version: lts/Hydrogen
+          node-version: lts/*
           cache: 'pnpm'
 
       # pnpm 설치
