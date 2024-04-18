@@ -23,13 +23,13 @@ jobs:
         uses: actions/setup-node@v2.5.2
         with:
           node-version: lts/*
-          cache: 'pnpm'
+          ㅔcache: 'pnpm'
 
       # pnpm 설치
       - name: Install pnpm
         run: npm install -g pnpm
       # PATH 환경 변수에 /usr/local/bin 추가
-      - name: Add /usr/local/bin to PATH
+      - name: Set pnpm path
         run: echo "::add-path::/usr/local/bin"
 
       # 해당 프로젝트의 node_modules에 변화가 있을 때마다 pnpm install을 해준다.
