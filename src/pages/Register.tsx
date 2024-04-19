@@ -28,30 +28,37 @@ export default function Register() {
 
   const onSubmitHandler = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+
     if (password !== confirmPassword) {
       return alert('비밀번호와 비밀번호 확인은 같아야 합니다.');
     }
-    try {
-      const response = await fetch('api/v1/signup', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({ email, password, name }),
-      });
-      const data = await response.json();
-      console.log(data);
 
-      if (response.status === 200) {
-        console.log('성공! 이메일주소: ' + data.email);
+    fetch('/signup', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({ email, password, name }),
+    })
+      .then(response => {
+        if (response.ok) {
+          return response.json();
+        } else if (response.status === 400) {
+          return response.json().then(data => {
+            throw new Error(data.message || '가입에 실패하였습니다. 다시 시도해주세요.');
+          });
+        } else {
+          throw new Error('Unexpected status code: ' + response.status);
+        }
+      })
+      .then(data => {
+        console.log('회원가입 성공! 이메일 주소:', data.email);
         navigate('/login');
-      } else if (response.status === 400) {
-        setErrorMessage('가입에 실패하였습니다. 다시 시도해주세요.');
-      }
-    } catch (error) {
-      console.error('Error:', error);
-      setErrorMessage('가입에 실패하였습니다. 다시 시도해주세요.');
-    }
+      })
+      .catch(error => {
+        console.error(`Error: ${error}`);
+        setErrorMessage(error.message || '가입에 실패하였습니다. 다시 시도해주세요.');
+      });
   };
 
   return (

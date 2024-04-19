@@ -17,29 +17,31 @@ export default function Login() {
     setPassword(e.currentTarget.value);
   };
 
-  const onSubmitHandler = async (e: React.FormEvent<HTMLFormElement>) => {
+  const onSubmitHandler = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    try {
-      const response = await fetch('/localhost8080/api/v1/users/login', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({ email, password }),
-      });
-      const data = await response.json();
-
-      if (response.status === 200) {
+    fetch('/login', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({ email, password }),
+    })
+      .then(response => {
+        if (response.status === 200) {
+          return response.json();
+        } else {
+          throw new Error('로그인 정보가 없습니다. 다시 시도해주세요.');
+        }
+      })
+      .then(data => {
         const accessToken = data.accessToken;
         sessionStorage.setItem('accessToken', accessToken);
         navigate('/');
-      } else {
+      })
+      .catch(error => {
+        console.error('Error:', error);
         setErrorMessage('로그인 정보가 없습니다. 다시 시도해주세요.');
-      }
-    } catch (error) {
-      console.error('Error:', error);
-      setErrorMessage('로그인 정보가 없습니다. 다시 시도해주세요.');
-    }
+      });
   };
 
   return (

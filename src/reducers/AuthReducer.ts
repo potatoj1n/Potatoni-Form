@@ -1,18 +1,19 @@
 import { createSlice } from '@reduxjs/toolkit';
-import { FormInfo } from '../reducers/formReducer';
 
 export interface UserState {
   id: string;
   name: string;
+  password: string;
   isLoggedIn: boolean;
-  forms: FormInfo[];
+  token: string | null; // 토큰 추가
 }
 
 const initialState: UserState = {
   id: '',
   name: '',
+  password: '',
   isLoggedIn: false,
-  forms: [],
+  token: null, // 초기 값은 null로 설정
 };
 
 const authReducer = createSlice({
@@ -23,13 +24,13 @@ const authReducer = createSlice({
       state.id = action.payload.id;
       state.name = action.payload.name;
       state.isLoggedIn = true;
-      state.forms = action.payload.forms;
+      state.token = action.payload.token; // 토큰 저장
     },
     setLogout: state => {
       state.id = '';
       state.name = '';
       state.isLoggedIn = false;
-      state.forms = [];
+      state.token = null; // 토큰 제거
     },
   },
 });
