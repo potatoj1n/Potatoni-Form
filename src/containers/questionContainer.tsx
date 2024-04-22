@@ -1,7 +1,6 @@
 import useAppSelector from '../hooks/useAppSelector';
 import Dropdown from '../components/Form/dropDown';
 import { ReactComponent as CopyIcon } from '../assets/copyIcon.svg';
-import { ReactComponent as DragIcon } from '../assets/dragIcon.svg';
 import { ReactComponent as TrashIcon } from '../assets/trashIcon.svg';
 import { Switch, IconButton, Tooltip } from '@material-ui/core';
 import * as QUESTION_TYPES from '../const/questionType';
@@ -10,7 +9,6 @@ import OptionalQuestion from '../components/Form/optionalQuestion';
 import { useDispatch } from 'react-redux';
 import { questionActions } from '../reducers/questionReducer';
 import { v4 as uuidv4 } from 'uuid';
-import { DraggableProvided } from 'react-beautiful-dnd';
 
 const menus = [
   { id: QUESTION_TYPES.SHORT_ANSWER, option: '단답형' },
@@ -34,10 +32,10 @@ const menus = [
 
 interface QuestionProps {
   questionId: string;
-  provided: DraggableProvided;
+  index: number;
 }
 
-const QuestionContainer = ({ questionId, provided }: QuestionProps) => {
+const QuestionContainer = ({ questionId }: QuestionProps) => {
   const dispatch = useDispatch();
   const { questions } = useAppSelector(state => state.form);
 
@@ -111,11 +109,8 @@ const QuestionContainer = ({ questionId, provided }: QuestionProps) => {
   };
 
   return (
-    <div className="flex flex-col">
-      <div className="flex justify-center" {...provided.dragHandleProps}>
-        <DragIcon />
-      </div>
-      <div className="flex flex-row">
+    <div className="flex flex-col mb-7 border bg-white rounded-xl p-10">
+      <div className="flex flex-row ">
         <input
           className=" p-3 w-2/3 text-xl border-gray-500 border-b focus:border-b-2 focus:border-blue-500 focus:outline-none bg-gray-100 mr-5"
           type="text"

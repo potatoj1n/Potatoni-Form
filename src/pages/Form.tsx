@@ -1,8 +1,5 @@
 import { Link } from 'react-router-dom';
 import { useState } from 'react';
-import { useDispatch } from 'react-redux';
-import { DragDropContext, Droppable, Draggable, DropResult } from 'react-beautiful-dnd';
-import { questionActions } from '../reducers/questionReducer';
 import QuestionContainer from '../containers/questionContainer';
 import FormHeader from '../components/Form/formHeader';
 import SideMenu from '../components/Form/sideMenu';
@@ -11,7 +8,6 @@ import useAppSelector from '../hooks/useAppSelector';
 
 const Form = () => {
   const { form, questions } = useAppSelector(state => state.form);
-  const dispatch = useDispatch();
 
   const [info, setInfo] = useState({
     title: form.form.title,
@@ -27,29 +23,8 @@ const Form = () => {
 
   const getQuestionList = () => {
     return questions.map((question, idx) => (
-      <Draggable key={question.id} draggableId={question.id} index={idx}>
-        {(provided, snapshot) => (
-          <div
-            ref={provided.innerRef}
-            {...provided.draggableProps}
-            style={{
-              ...provided.draggableProps.style,
-              backgroundColor: snapshot.isDragging ? 'lightblue' : 'white',
-            }}
-            className="border rounded-xl min-h-62 mb-5 px-9 py-3"
-          >
-            <QuestionContainer key={question.id} questionId={question.id} provided={provided} />
-          </div>
-        )}
-      </Draggable>
+      <QuestionContainer key={question.id} questionId={question.id} index={idx} />
     ));
-  };
-
-  const onDragEnd = (result: DropResult) => {
-    if (!result.destination) {
-      return;
-    }
-    dispatch(questionActions.reorderQuestion({ firstIdx: result.source.index, secondIdx: result.destination.index }));
   };
 
   return (
@@ -64,16 +39,7 @@ const Form = () => {
       <div className="flex flex-col justify-start items-center flex-grow bg-blue-200">
         <main className="w-3/5 max-w-screen-lg">
           <TitleBox info={{ id: form.form.id, title: info.title, detail: info.detail }} handleChange={handleInfo} />
-          <DragDropContext onDragEnd={onDragEnd}>
-            <Droppable droppableId="droppable">
-              {provided => (
-                <div ref={provided.innerRef}>
-                  {getQuestionList()}
-                  {provided.placeholder}
-                </div>
-              )}
-            </Droppable>
-          </DragDropContext>
+          <div>{getQuestionList()}</div>
         </main>
         <span className="fixed right-48 top-44">
           <SideMenu info={info} />
@@ -82,4 +48,5 @@ const Form = () => {
     </div>
   );
 };
+
 export default Form;
