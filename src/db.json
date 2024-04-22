@@ -1,0 +1,99 @@
+{
+  "token": {
+    "access_token": "9k3kljnslkdj_34lk2j34lks09sv",
+    "userId": 123
+  },
+  "register": [
+    {
+      "email": "eunjin4671@naver.com",
+      "password": "1234",
+      "name": "은진",
+      "id": "8faf"
+    },
+    {
+      "email": "eunjin4671@gmail.com",
+      "password": "1234",
+      "name": "12",
+      "id": "662c"
+    },
+    {
+      "id": "6511"
+    },
+    {
+      "id": "3467",
+      "email": "email",
+      "password": "password"
+    },
+    {
+      "id": "bfee"
+    },
+    {
+      "id": "6b2f",
+      "email": "dmswls@naver.com",
+      "password": "dmswls"
+    },
+    {
+      "id": "2267",
+      "email": "dmswls@naver.com",
+      "password": "dmswls"
+    },
+    {
+      "id": "3188",
+      "email": "eunjin4671@naver.com",
+      "password": "dmswls",
+      "name": "은진"
+    },
+    {
+      "id": "4b3a",
+      "email": "eunjin4671@naver.com",
+      "password": "dmswls",
+      "name": "은진"
+    },
+    {
+      "id": "24e4",
+      "email": "eunjin4671@naver.com",
+      "password": "dmswls",
+      "name": "은진"
+    },
+    {
+      "id": "679a",
+      "email": "qhfl@naver.com",
+      "password": "qhfl",
+      "name": "보리"
+    },
+    {
+      "id": "ed89",
+      "email": "qhfl@naver.com",
+      "password": "qhfl",
+      "name": "보리"
+    }
+  ],
+  "login": [
+    {},
+    {
+      "id": "6570",
+      "email": "dmswls@naver.com",
+      "password": "dmswls"
+    },
+    {
+      "id": "b2c2",
+      "email": "email",
+      "password": "password"
+    },
+    {
+      "id": "44f8",
+      "email": "eunjin4671@naver.com",
+      "password": "1234"
+    },
+    {
+      "id": "03e4",
+      "email": "eunjin4671@naver.com",
+      "password": "1234"
+    },
+    {
+      "id": "88b4",
+      "email": "eunjin4671@naver.com",
+      "password": "1234"
+    }
+  ]
+}

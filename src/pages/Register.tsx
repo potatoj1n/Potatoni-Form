@@ -33,12 +33,12 @@ export default function Register() {
       return alert('비밀번호와 비밀번호 확인은 같아야 합니다.');
     }
 
-    fetch('/signup', {
+    fetch('http://localhost:4000/register', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
       },
-      body: JSON.stringify({ email, password, name }),
+      body: JSON.stringify({ email: email, password: password, name: name }),
     })
       .then(response => {
         if (response.ok) {
@@ -56,8 +56,9 @@ export default function Register() {
         navigate('/login');
       })
       .catch(error => {
-        console.error(`Error: ${error}`);
-        setErrorMessage(error.message || '가입에 실패하였습니다. 다시 시도해주세요.');
+        console.error('Error:', error);
+        const errorMessage = error.message || '가입에 실패하였습니다. 다시 시도해주세요.';
+        setErrorMessage(errorMessage);
       });
   };
 
